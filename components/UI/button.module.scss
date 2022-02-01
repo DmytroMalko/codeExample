@@ -1,0 +1,26 @@
+.button {
+  cursor: pointer;
+
+  &-default {
+    background: var(--white);
+    width: 140px;
+    height: 80px;
+    border: 1px solid rgba(128, 128, 128, 0.548);
+    border-radius: 14px;
+  }
+
+  &-primary {
+    background: var(--basic-color);
+    color: var(--white);
+    width: 140px;
+    height: 40px;
+    border: none;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 7px;
+  }
+}
+
+.disabled {
+  background-color: rgba(128, 128, 128, 0.384);
+}

@@ -1,0 +1,71 @@
+.container {
+  border-radius: 14px 14px 0 0;
+  overflow: hidden;
+  width: 385px;
+
+  @media only screen and (max-width: 700px) {
+    width: 320px;
+  }
+}
+
+.vanImage {
+  height: 150px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.vanDataContainer {
+  border-radius: 0 0 14px 14px;
+  border-top: none;
+  border: 1px solid rgba(128, 128, 128, 0.137);
+  margin-top: -4px;
+  padding: 10px;
+}
+
+.vanNameBox {
+  padding-bottom: 10px;
+}
+
+.vanType {
+  color: orange;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.vanName {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.vanEquip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.vanInfo {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.151);
+  border-top: 1px solid rgba(128, 128, 128, 0.151);
+  padding: 10px 0;
+}
+
+.vanIconBox {
+  align-items: center;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
+.priceBox {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+
+  & > div:first-of-type {
+    color: var(--text-grey);
+  }
+  & > div:last-of-type {
+    font-weight: bold;
+  }
+}

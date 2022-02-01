@@ -1,0 +1,27 @@
+.container {
+  margin: auto;
+  max-width: 1240px;
+  padding-top: 20px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.vansContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  padding-top: 50px;
+
+  @media only screen and (max-width: 1240px) {
+    justify-content: center;
+    padding: 20px;
+    padding-top: 50px;
+  }
+}
+
+.btnContainer {
+  margin: 40px 0;
+  text-align: center;
+}
