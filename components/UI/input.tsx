@@ -4,9 +4,10 @@ type Props = {
   onChange: (value: string) => void;
   type?: string;
   value?: string | number;
+  defaultValue?: string | number;
 };
 
-const Input = ({ onChange, type, value, ...rest }: Props) => {
+const Input = ({ onChange, type, value, defaultValue, ...rest }: Props) => {
   const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     onChange(target.value);
   };
@@ -19,6 +20,7 @@ const Input = ({ onChange, type, value, ...rest }: Props) => {
         onChange={handleChange}
         type={type}
         value={value}
+        defaultValue={defaultValue}
       />
     </div>
   );

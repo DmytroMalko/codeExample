@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Button from "./UI/button";
 import Input from "./UI/input";
 import style from "./SearchBar.module.scss";
 import { Range } from "rc-slider";
 import "rc-slider/assets/index.css";
-import Head from "next/head";
 
 const buttonsData = [
   {
@@ -46,9 +45,10 @@ const startMaxPrice = 6000;
 
 export default function SearchBar({ onFilter }: Props) {
   const [type, setType] = useState<string[] | null>(null);
-  const [rangeFrom, setRangeFrom] = useState<number | null>(null);
-  const [rangeTo, setRangeTo] = useState<number | null>(null);
+  const [rangeFrom, setRangeFrom] = useState<number>(3000);
+  const [rangeTo, setRangeTo] = useState<number>(6000);
   const [reservation, setReservation] = useState<boolean | null>(null);
+  const firstRender = useRef(true);
 
   const handleTypes = (cavType: string) => {
     if (type !== null) {
@@ -65,6 +65,10 @@ export default function SearchBar({ onFilter }: Props) {
   };
 
   useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
     if (
       type !== null ||
       rangeFrom !== null ||
@@ -84,22 +88,8 @@ export default function SearchBar({ onFilter }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type, rangeFrom, rangeTo, reservation]);
 
-  const rangeInputValue = () => {
-    return rangeFrom
-      ? rangeTo
-        ? [rangeFrom, rangeTo]
-        : [3000, rangeTo]
-      : [rangeFrom, 6000];
-  };
-
   return (
     <div>
-      <Head>
-        <title>Vans</title>
-        <meta name="author" content="Dmytro Malko" />
-        <meta name="keywords" content="vans, rent-van" />
-        <meta name="description" content="Aplikace s vanama" />
-      </Head>
       <form className={style.form}>
         <div className={style.inputContainer}>
           Cena za den
@@ -109,22 +99,24 @@ export default function SearchBar({ onFilter }: Props) {
               setRangeFrom(e[0]);
               setRangeTo(e[1]);
             }}
-            min={0}
+            min={1}
             max={10000}
-            value={rangeInputValue()}
+            value={
+              typeof rangeFrom === "number" && typeof rangeTo === "number"
+                ? [rangeFrom, rangeTo]
+                : [startMinPrice, startMaxPrice]
+            }
           />
           <div className={style.inputBox}>
             <Input
               onChange={(e) => setRangeFrom(parseInt(e, 10))}
-              value={rangeFrom && rangeFrom.toString()}
+              value={rangeFrom}
               type="number"
-              defaultValue={startMinPrice}
             />
             <Input
               onChange={(e) => setRangeTo(parseInt(e, 10))}
               type="number"
-              value={rangeTo && rangeTo.toString()}
-              defaultValue={startMaxPrice}
+              value={rangeTo}
             />
           </div>
         </div>
