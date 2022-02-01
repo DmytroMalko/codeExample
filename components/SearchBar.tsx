@@ -94,7 +94,7 @@ export default function SearchBar({ onFilter }: Props) {
         <div className={style.inputContainer}>
           Cena za den
           <Range
-            defaultValue={[3000, 6000]}
+            defaultValue={[startMinPrice, startMaxPrice]}
             onChange={(e) => {
               setRangeFrom(e[0]);
               setRangeTo(e[1]);

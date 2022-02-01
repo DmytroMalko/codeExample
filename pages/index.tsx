@@ -9,7 +9,6 @@ import style from "./index.module.scss";
 const Home = () => {
   const [vans, setVans] = useState<VanData[]>([]);
   const [filteredVans, setFilteredVans] = useState<VanData[] | null>(null);
-  const [message, setMessage] = useState("");
 
   const [numberOfDisplays, setNumberOfDisplays] = useState(6);
 
@@ -18,14 +17,13 @@ const Home = () => {
 
     if (filteredData) {
       // Price Filters
-      console.log("filteredData", filteredData);
+
       if (filteredData?.rangeFrom && filteredData?.rangeTo) {
         finallVersion = finallVersion.filter(
           (allVans) =>
             allVans.price <= filteredData.rangeTo! &&
             allVans.price >= filteredData.rangeFrom!
         );
-        console.log("finallVersion", finallVersion);
       }
 
       if (filteredData.type && filteredData.type.length > 0) {
@@ -43,10 +41,8 @@ const Home = () => {
         );
       }
     }
-    // console.log("finallVersion", finallVersion);
-    setMessage("");
+
     if (finallVersion.length < 1 && filteredData) {
-      // setMessage("zadny karavan neodpovida vyhledavani");
     }
     return setFilteredVans(finallVersion);
   };
@@ -66,8 +62,6 @@ const Home = () => {
       <Heading>Prague Labs testovací zadání</Heading>
 
       <div className={style.container}>
-        <div>{message.length > 1 && message}</div>
-
         <SearchBar onFilter={(data) => displayVans(vans, data)} />
 
         <div className={style.vansContainer}>
