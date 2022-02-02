@@ -15,9 +15,8 @@ const Button = ({
   className,
   disabled,
   onClick,
-  state,
-  type,
-  ...rest
+  state = "default",
+  type = "button",
 }: Props &
   React.DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -41,16 +40,10 @@ const Button = ({
       disabled={disabled}
       onClick={changeHandler}
       type={type}
-      {...rest}
     >
       {children}
     </button>
   );
-};
-
-Button.defaultProps = {
-  type: "button",
-  state: "default",
 };
 
 export default Button;

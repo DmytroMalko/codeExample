@@ -7,7 +7,7 @@ type Props = {
   defaultValue?: string | number;
 };
 
-const Input = ({ onChange, type, value, defaultValue, ...rest }: Props) => {
+const Input = ({ onChange, type = "text", value, defaultValue }: Props) => {
   const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     onChange(target.value);
   };
@@ -15,7 +15,6 @@ const Input = ({ onChange, type, value, defaultValue, ...rest }: Props) => {
   return (
     <div className={styles.inputContainer}>
       <input
-        {...rest}
         className={styles.input}
         onChange={handleChange}
         type={type}
@@ -24,10 +23,6 @@ const Input = ({ onChange, type, value, defaultValue, ...rest }: Props) => {
       />
     </div>
   );
-};
-
-Input.defaultProps = {
-  type: "text",
 };
 
 export default Input;
